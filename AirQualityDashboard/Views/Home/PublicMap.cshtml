@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Colombo AQI Map";
+}
+<h2>Live Air Quality Map</h2>
+<div id="map" style="height: 500px;"></div>
+<div id="legend"></div>
+
+@section Scripts {
+    <!-- Include Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Include Leaflet Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        // Initialize the map with a specific view
+        var map = L.map('map').setView([6.9271, 79.8612], 12);
+
+        // Add OpenStreetMap tiles to the map
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Fetch sensor data for map markers
+        fetch('/Home/GetSensorDataForMap')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(sensor => {
+                    // Determine the color based on the AQI
+                    var color = getColor(sensor.currentAQI);
+
+                    // Create a circle marker for each sensor
+                    var marker = L.circleMarker([sensor.latitude, sensor.longitude], {
+                        radius: 10,
+                        fillColor: color,
+                        color: "#000",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    }).addTo(map);
+
+                    // Bind the popup to display sensor info and chart
+                    marker.on('click', function () {
+                        fetch(`/Home/GetHistoricalAQI?sensorId=${sensor.id}`)
+                            .then(response => response.json())
+                            .then(history => {
+                                // Prepare data for the chart
+                                let labels = history.map(x => x.time);
+                                let values = history.map(x => x.aqi);
+
+                                // Bind the popup with AQI information and a chart canvas
+                                marker.bindPopup(`
+                                    <b>Sensor:</b> ${sensor.name}<br>
+                                    <b>Current AQI:</b> ${sensor.currentAQI}<br>
+                                    <canvas id="miniChart${sensor.id}" width="200" height="100"></canvas>
+                                `).openPopup();
+
+                                // Initialize Chart.js after the popup is opened
+                                setTimeout(() => {
+                                    const ctx = document.getElementById(`miniChart${sensor.id}`);
+                                    if (ctx) {
+                                        new Chart(ctx, {
+                                            type: 'line',
+                                            data: {
+                                                labels: labels,
+                                                datasets: [{
+                                                    label: 'AQI (Last 24h)',
+                                                    data: values,
+                                                    fill: false,
+                                                    borderColor: 'blue',
+                                                    tension: 0.1
+                                                }]
+                                            }
+                                        });
+                                    }
+                                }, 200);
+                            });
+                    });
+                });
+            });
+
+        // Function to get the color based on AQI
+        function getColor(aqi) {
+            if (aqi <= 50) return "green";
+            if (aqi <= 100) return "yellow";
+            if (aqi <= 150) return "orange";
+            return "red";
+        }
+    </script>
+}

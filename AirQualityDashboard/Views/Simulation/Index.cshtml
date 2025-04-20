@@ -1,0 +1,23 @@
+﻿@page
+@model AirQualityDashboard.Views.Simulation.IndexModel
+@{
+    ViewData["Title"] = "Simulation Control";
+    var isRunning = (bool)ViewBag.IsRunning;
+}
+
+<h2>Data Simulation Control</h2>
+
+@if (isRunning)
+{
+    <p>Simulation is <strong style="color:green;">running</strong>.</p>
+    <form asp-action="Stop" method="post">
+        <button type="submit" class="btn btn-danger">Stop Simulation</button>
+    </form>
+}
+else
+{
+    <p>Simulation is <strong style="color:red;">stopped</strong>.</p>
+    <form asp-action="Start" method="post">
+        <button type="submit" class="btn btn-success">Start Simulation</button>
+    </form>
+}

@@ -1,0 +1,34 @@
+﻿@model Sensor
+@await Html.PartialAsync("_AQILegend")
+
+@{
+    ViewData["Title"] = "AQI Trend - " + Model.Name;
+    var chartId = "aqiChart";
+}
+
+<h2>@ViewData["Title"]</h2>
+<canvas id="@chartId" width="800" height="400"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labels = [@string.Join(",", Model.SensorDataRecords.Select(d => $"'{d.Timestamp:HH:mm}'"))];
+        const data = [@string.Join(",", Model.SensorDataRecords.Select(d => d.AQI))];
+
+        const ctx = document.getElementById('@chartId').getContext('2d');
+        const aqiChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'AQI (Last 24 Readings)',
+                    data: data,
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    tension: 0.3
+                }]
+            }
+        });
+    </script>
+}

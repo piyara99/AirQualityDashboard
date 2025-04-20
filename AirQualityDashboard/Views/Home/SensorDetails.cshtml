@@ -1,0 +1,31 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Sensor Details";
+}
+
+<h2>Sensor Historical AQI</h2>
+<canvas id="fullChart" width="600" height="300"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        fetch(`/Home/GetHistoricalAQI?sensorId=@Model`)
+            .then(res => res.json())
+            .then(data => {
+                const ctx = document.getElementById('fullChart');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.map(x => x.time),
+                        datasets: [{
+                            label: 'AQI (Last 24h)',
+                            data: data.map(x => x.aqi),
+                            borderColor: 'red',
+                            tension: 0.1
+                        }]
+                    }
+                });
+            });
+    </script>
+}

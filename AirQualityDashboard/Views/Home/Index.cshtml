@@ -1,0 +1,326 @@
+﻿@model IEnumerable<AirQualityDashboard.Models.Sensor>
+@{
+    ViewData["Title"] = "Air Quality Dashboard";
+}
+
+<head>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        .aqi-good {
+            background-color: #00e400;
+        }
+
+        .aqi-moderate {
+            background-color: #ffff00;
+        }
+
+        .aqi-unhealthy {
+            background-color: #ff7e00;
+        }
+
+        .aqi-very-unhealthy {
+            background-color: #ff0000;
+        }
+
+        .aqi-hazardous {
+            background-color: #8f3f97;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="text-center mb-4">
+            <h1 class="display-4">Real-Time Air Quality Monitoring</h1>
+        </div>
+
+        <div class="row">
+            <!-- Map Column -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-map"></i> Sensor Locations
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div id="map" style="height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sensor List Column -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-speedometer2"></i> Sensor Status
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Model == null || !Model.Any())
+                        {
+                            <div class="alert alert-warning">No sensors available</div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var sensor in Model)
+                                        {
+                                            <tr>
+                                                <td>@sensor.Name</td>
+                                                <td>
+                                                    <span class="badge @(sensor.IsActive ? "bg-success" : "bg-danger")">
+                                                        @(sensor.IsActive ? "Active" : "Inactive")
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("Details", "Sensors", new { id = sensor.Id })"
+                                                       class="btn btn-sm btn-info" title="Details">
+                                                        <i class="bi bi-info-circle"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <h5 class="card-title mb-0">
+                                    <i class="bi bi-graph-up"></i> AQI Trends
+                                </h5>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="sensorDropdown" class="form-select form-select-sm">
+                                    <option value="">Select Sensor</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select id="timeRange" class="form-select form-select-sm">
+                                    <option value="1">Last 24 Hours</option>
+                                    <option value="7">Last 7 Days</option>
+                                    <option value="30">Last 30 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="aqiChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let map;
+        let aqiChart;
+        let sensors = [];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', async function() {
+            initMap();
+            await loadSensors();
+            initEventListeners();
+        });
+
+        // Initialize Leaflet map
+        function initMap() {
+            map = L.map('map').setView([6.9271, 79.8612], 12);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+        }
+
+        // Load sensors and populate map/dropdown
+        async function loadSensors() {
+            try {
+                const response = await fetch('/Home/GetSensors');
+                if (!response.ok) throw new Error('Failed to load sensors');
+
+                sensors = await response.json();
+                populateSensorDropdown();
+                updateMapMarkers();
+
+                // Load data for first sensor by default
+                if (sensors.length > 0) {
+                    loadAqiData(sensors[0].id, 1);
+                }
+            } catch (error) {
+                console.error('Error loading sensors:', error);
+                alert('Failed to load sensor data. Please try again later.');
+            }
+        }
+
+        // Populate sensor dropdown
+        function populateSensorDropdown() {
+            const dropdown = document.getElementById('sensorDropdown');
+            dropdown.innerHTML = '<option value="">Select Sensor</option>';
+
+            sensors.forEach(sensor => {
+                const option = document.createElement('option');
+                option.value = sensor.id;
+                option.textContent = sensor.name;
+                dropdown.appendChild(option);
+            });
+        }
+
+        // Update map with markers
+        function updateMapMarkers() {
+            // Clear existing markers
+            map.eachLayer(layer => {
+                if (layer instanceof L.CircleMarker) {
+                    map.removeLayer(layer);
+                }
+            });
+
+            sensors.forEach(sensor => {
+                const aqi = sensor.aqi || 0;
+                const color = getAqiColor(aqi);
+
+                const marker = L.circleMarker([sensor.latitude, sensor.longitude], {
+                    radius: 10,
+                    fillColor: color,
+                    color: "#000",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                marker.bindPopup(`
+                    <b>${sensor.name}</b><br>
+                    AQI: ${aqi}<br>
+                    <button class="btn btn-sm btn-primary mt-2"
+                            onclick="loadAqiData(${sensor.id}, document.getElementById('timeRange').value)">
+                        Show Trend
+                    </button>
+                `);
+            });
+        }
+
+        // Load AQI data for chart
+        async function loadAqiData(sensorId, days) {
+            try {
+                const response = await fetch(`/Home/GetAqiHistory?sensorId=${sensorId}&days=${days}`);
+                if (!response.ok) throw new Error('Failed to load AQI data');
+
+                const data = await response.json();
+                updateChart(data);
+            } catch (error) {
+                console.error('Error loading AQI data:', error);
+                alert('Failed to load AQI data. Please try again later.');
+            }
+        }
+
+        // Update the chart with new data
+        function updateChart(data) {
+            const ctx = document.getElementById('aqiChart').getContext('2d');
+
+            // Destroy previous chart if exists
+            if (aqiChart) {
+                aqiChart.destroy();
+            }
+
+            aqiChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.dates,
+                    datasets: [{
+                        label: 'AQI',
+                        data: data.aqiValues,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Air Quality Index (AQI) Trend'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'AQI Value'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time/Date'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Get color based on AQI value
+        function getAqiColor(aqi) {
+            if (aqi <= 50) return '#00e400'; // Good
+            if (aqi <= 100) return '#ffff00'; // Moderate
+            if (aqi <= 150) return '#ff7e00'; // Unhealthy for Sensitive Groups
+            if (aqi <= 200) return '#ff0000'; // Unhealthy
+            if (aqi <= 300) return '#8f3f97'; // Very Unhealthy
+            return '#7e0023'; // Hazardous
+        }
+
+        // Initialize event listeners
+        function initEventListeners() {
+            document.getElementById('sensorDropdown').addEventListener('change', function() {
+                const sensorId = this.value;
+                const days = document.getElementById('timeRange').value;
+                if (sensorId) {
+                    loadAqiData(sensorId, days);
+                }
+            });
+
+            document.getElementById('timeRange').addEventListener('change', function() {
+                const sensorId = document.getElementById('sensorDropdown').value;
+                const days = this.value;
+                if (sensorId) {
+                    loadAqiData(sensorId, days);
+                }
+            });
+        }
+    </script>
+</body>
