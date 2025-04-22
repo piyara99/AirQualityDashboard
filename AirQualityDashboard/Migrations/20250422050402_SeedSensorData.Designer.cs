@@ -4,6 +4,7 @@ using AirQualityDashboard.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AirQualityDashboard.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250422050402_SeedSensorData")]
+    partial class SeedSensorData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,35 +216,35 @@ namespace AirQualityDashboard.Migrations
                             Id = 1,
                             AQI = 42,
                             SensorId = -1,
-                            Timestamp = new DateTime(2024, 4, 21, 3, 0, 0, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2025, 4, 22, 0, 4, 1, 189, DateTimeKind.Utc).AddTicks(327)
                         },
                         new
                         {
                             Id = 2,
                             AQI = 55,
                             SensorId = -1,
-                            Timestamp = new DateTime(2024, 4, 21, 4, 0, 0, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2025, 4, 22, 1, 4, 1, 189, DateTimeKind.Utc).AddTicks(541)
                         },
                         new
                         {
                             Id = 3,
                             AQI = 65,
                             SensorId = -1,
-                            Timestamp = new DateTime(2024, 4, 21, 5, 0, 0, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2025, 4, 22, 2, 4, 1, 189, DateTimeKind.Utc).AddTicks(545)
                         },
                         new
                         {
                             Id = 4,
                             AQI = 75,
                             SensorId = -1,
-                            Timestamp = new DateTime(2024, 4, 21, 6, 0, 0, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2025, 4, 22, 3, 4, 1, 189, DateTimeKind.Utc).AddTicks(546)
                         },
                         new
                         {
                             Id = 5,
                             AQI = 68,
                             SensorId = -1,
-                            Timestamp = new DateTime(2024, 4, 21, 7, 0, 0, 0, DateTimeKind.Utc)
+                            Timestamp = new DateTime(2025, 4, 22, 4, 4, 1, 189, DateTimeKind.Utc).AddTicks(547)
                         });
                 });
 

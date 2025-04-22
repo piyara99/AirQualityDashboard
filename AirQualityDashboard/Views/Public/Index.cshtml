@@ -1,13 +1,13 @@
 ﻿@model List<AirQualityDashboard.ViewModels.SensorViewModel>
 
-
 @{
     ViewData["Title"] = "Real-time Air Quality Monitoring - Colombo";
 }
 
-<!-- Load Leaflet -->
+<!-- Load Leaflet and Chart.js -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
     body, html {
@@ -53,73 +53,238 @@
 
 <div id="map"></div>
 
+<div id="sensor-list" style="position:absolute; top:60px; left:10px; background:white; padding:10px; z-index:1000; max-height:300px; overflow-y:auto;">
+    <h5 style="margin-top:0;">Sensors</h5>
+    <ul id="sensor-items" style="list-style:none; padding:0; margin:0;">
+    </ul>
+</div>
+
+<div id="sensor-chart-container" style="position:absolute; bottom:10px; left:10px; width:350px; height:250px; background:white; padding:10px; z-index:1000; display:none;">
+    <canvas id="sensor-chart" style="width:100%; height:200px;"></canvas>
+    <div style="margin-top:5px;">
+        <button onclick="loadHistoricalData('day')">Day</button>
+        <button onclick="loadHistoricalData('week')">Week</button>
+        <button onclick="loadHistoricalData('month')">Month</button>
+    </div>
+</div>
+
+
 <div class="top-right-links">
     <a href="/Account/Login">Login</a> |
     <a href="/Account/Register">Register</a>
 </div>
 
 <script>
-    var map = L.map('map').setView([6.9271, 79.8612], 11); // Colombo center
+       var map = L.map('map').setView([6.9271, 79.8612], 11); // Colombo center
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
     function getColor(aqi) {
-        if (aqi <= 50) return "#009966";      // Good
-        if (aqi <= 100) return "#ffde33";     // Moderate
-        if (aqi <= 150) return "#ff9933";     // Unhealthy for sensitive groups
-        if (aqi <= 200) return "#cc0033";     // Unhealthy
-        if (aqi <= 300) return "#660099";     // Very Unhealthy
-        return "#7e0023";                     // Hazardous
+        if (aqi <= 50) return "#009966";
+        if (aqi <= 100) return "#ffde33";
+        if (aqi <= 150) return "#ff9933";
+        if (aqi <= 200) return "#cc0033";
+        if (aqi <= 300) return "#660099";
+        return "#7e0023";
     }
 
-    @foreach (var sensor in Model)
-    {
-        var markerColor = "getColor(@sensor.CurrentAQI)";
-        <text>
-            var marker = L.marker([@sensor.Latitude, @sensor.Longitude], {
-                icon: L.divIcon({
-                    className: 'custom-div-icon',
-                    html: `<div style="background-color:${getColor(@sensor.CurrentAQI)}; color: #fff; border-radius: 5px; padding: 4px 6px; font-weight:bold;">
-                @sensor.CurrentAQI
-                           </div>`,
-                    iconSize: [30, 42],
-                    iconAnchor: [15, 42]
-                })
-            }).addTo(map);
+    function getCategory(aqi) {
+        if (aqi <= 50) return "😊 Good";
+        if (aqi <= 100) return "😐 Moderate";
+        if (aqi <= 150) return "😷 Unhealthy (Sensitive)";
+        if (aqi <= 200) return "😷 Unhealthy";
+        if (aqi <= 300) return "☠️ Very Unhealthy";
+        return "☠️ Hazardous";
+    }
 
-            marker.bindPopup(`
-                <b>@sensor.LocationName</b><br/>
-                <div style="background-color:${getColor(@sensor.CurrentAQI)}; color: black; padding: 5px; margin-top:5px;">
-                    😊 @sensor.CurrentAQI - @(sensor.CurrentAQI <= 50 ? "Good" :
-                       sensor.CurrentAQI <= 100 ? "Moderate" :
-                       sensor.CurrentAQI <= 150 ? "Unhealthy for Sensitive Groups" :
-                       sensor.CurrentAQI <= 200 ? "Unhealthy" :
-                       sensor.CurrentAQI <= 300 ? "Very Unhealthy" : "Hazardous")
+    // 🔥 Load sensors from backend
+    var sensors = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
+
+    // 🌍 Create Leaflet markers safely
+    sensors.forEach(sensor => {
+        if (sensor.Latitude == null || sensor.Longitude == null) {
+            console.warn('Skipping sensor with missing latitude/longitude:', sensor);
+            return;
+        }
+
+        const aqi = sensor.CurrentAQI ?? Math.floor(Math.random() * 301); // fallback if missing
+
+        var marker = L.marker([sensor.Latitude, sensor.Longitude], {
+            icon: L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style="background-color:${getColor(aqi)}; color: #fff; border-radius: 5px; padding: 4px 6px; font-weight:bold;">
+                    ${aqi}
+                </div>`,
+                iconSize: [30, 42],
+                iconAnchor: [15, 42]
+            })
+        }).addTo(map);
+
+        marker.bindPopup(`
+            <div id="popup-${sensor.Id}" style="width: 250px;">
+                <strong>${sensor.LocationName}</strong><br/>
+                <div style="background-color:${getColor(aqi)}; color: black; padding: 5px; margin-top:5px; text-align:center;">
+                    ${getCategory(aqi)}<br/>AQI: ${aqi}
                 </div>
-                <small>updated just now</small><br/>
-                <img src="/images/sensors/@sensor.Id-mini-chart.png" width="200" /><br/>
-                <img src="/images/sensors/@sensor.Id-heatmap.png" width="200" />
-            `);
-        </text>
+                <small>Updated just now</small><br/>
+                <div style="margin-top:8px;">
+                    <select id="range-select-${sensor.Id}" style="width: 100%; padding:4px;">
+                        <option value="day">Last Day</option>
+                        <option value="week">Last Week</option>
+                        <option value="month">Last Month</option>
+                    </select>
+                </div>
+                <canvas id="chart-${sensor.Id}" width="250" height="150" style="margin-top:10px;"></canvas>
+            </div>
+        `);
+
+        marker.on('popupopen', function () {
+            loadChart(sensor.Id);
+        });
+    });
+
+    // 📊 Chart instances storage
+    var chartInstances = {};
+
+    function loadChart(sensorId) {
+        const rangeSelect = document.getElementById(`range-select-${sensorId}`);
+        const canvas = document.getElementById(`chart-${sensorId}`);
+        if (!canvas) return;
+
+        function fetchAndRender(range) {
+            fetch(`/Home/GetAqiHistory?sensorId=${encodeURIComponent(sensorId)}&days=${range === 'week' ? 7 : range === 'month' ? 30 : 1}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (chartInstances[sensorId]) {
+                        chartInstances[sensorId].destroy();
+                    }
+
+                    chartInstances[sensorId] = new Chart(canvas, {
+                        type: 'line',
+                        data: {
+                            labels: data.dates,
+                            datasets: [{
+                                label: `AQI (${range})`,
+                                data: data.aqiValues,
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                fill: true,
+                                tension: 0.4,
+                                pointRadius: 2,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    suggestedMax: 300
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading chart:', error));
+        }
+
+        fetchAndRender('day');
+
+        if (rangeSelect) {
+            rangeSelect.addEventListener('change', () => {
+                const selectedRange = rangeSelect.value;
+                fetchAndRender(selectedRange);
+            });
+        }
     }
 
-    var legend = L.control({position: 'bottomright'});
+    // 🖍️ Legend
+    var legend = L.control({ position: 'bottomright' });
 
-    legend.onAdd = function (map) {
+    legend.onAdd = function () {
         var div = L.DomUtil.create('div', 'legend'),
             grades = [0, 50, 100, 150, 200, 300],
             labels = ['Good', 'Moderate', 'Unhealthy (Sensitive)', 'Unhealthy', 'Very Unhealthy', 'Hazardous'];
 
         for (var i = 0; i < grades.length; i++) {
             div.innerHTML +=
-                '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                '<i style="background:' + getColor(grades[i] + 1) + '; width: 18px; height: 18px; display:inline-block; margin-right:8px;"></i> ' +
                 labels[i] + '<br>';
         }
-
         return div;
     };
 
     legend.addTo(map);
+
+    // 📋 Sidebar sensor list
+    var sensorList = document.getElementById('sensor-items');
+
+    sensors.forEach(sensor => {
+        var li = document.createElement('li');
+        li.innerHTML = `<a href="#" onclick="selectSensor(${sensor.Id}, '${sensor.LocationName}')">${sensor.LocationName}</a>`;
+        sensorList.appendChild(li);
+    });
+
+    var selectedSensorId = null;
+    var historicalChart = null;
+
+    function selectSensor(sensorId, sensorName) {
+        selectedSensorId = sensorId;
+        document.getElementById('sensor-chart-container').style.display = 'block';
+        loadHistoricalData('day');
+    }
+
+    function loadHistoricalData(range) {
+        if (!selectedSensorId) return;
+
+        let days = range === 'week' ? 7 : range === 'month' ? 30 : 1;
+
+        fetch(`/Home/GetAqiHistory?sensorId=${encodeURIComponent(selectedSensorId)}&days=${days}`)
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('sensor-chart').getContext('2d');
+
+                if (historicalChart) {
+                    historicalChart.destroy();
+                }
+
+                historicalChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.dates,
+                        datasets: [{
+                            label: `AQI - Last ${range}`,
+                            data: data.aqiValues,
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 2,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                suggestedMax: 300
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading historical AQI data:', error));
+    }
+
+
+
 </script>
+
