@@ -69,7 +69,37 @@ namespace AirQualityDashboard.Data
                             string.Join(", ", result.Errors.Select(e => e.Description)));
                     }
                 }
+
+                // Create a Monitoring Admin
+                var monitoringEmail = "monitor@air.lk";
+                var monitoringPassword = "Monitor#123";
+
+                if (await _userManager.FindByEmailAsync(monitoringEmail) == null)
+                {
+                    var monitoringUser = new AppUser
+                    {
+                        UserName = monitoringEmail,
+                        Email = monitoringEmail,
+                        EmailConfirmed = true,
+                        FullName = "Monitoring Administrator"
+                    };
+
+                    var result = await _userManager.CreateAsync(monitoringUser, monitoringPassword);
+                    if (result.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(monitoringUser, "MonitoringAdmin");
+                        _logger.LogInformation("Monitoring admin user created successfully");
+                    }
+                    else
+                    {
+                        _logger.LogError("Failed to create monitoring admin user: {Errors}",
+                            string.Join(", ", result.Errors.Select(e => e.Description)));
+                    }
+                }
+
             }
+
+
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while seeding identity data");

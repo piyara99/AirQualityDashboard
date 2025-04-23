@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using AirQualityDashboard.Services;
 
-namespace AirQualityDashboard.Controllers
+namespace AirQualityDashboard.Areas.MonitoringAdmin.Controllers
 {
+    [Area("MonitoringAdmin")]
     [Authorize(Roles = "MonitoringAdmin, SystemAdmin")]
     public class SimulationController : Controller
     {

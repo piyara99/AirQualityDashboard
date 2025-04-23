@@ -1,0 +1,55 @@
+﻿@model AirQualityDashboard.ViewModels.MonitoringDashboardViewModel
+@{
+    ViewData["Title"] = "Monitoring Admin Dashboard";
+}
+
+<h2>Monitoring Admin Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Total Sensors</div>
+            <div class="card-body">
+                <h5 class="card-title">@Model.TotalSensors</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Active Sensors</div>
+            <div class="card-body">
+                <h5 class="card-title">@Model.ActiveSensors</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-header">Simulation Status</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    @(Model.SimulationRunning ? "Running" : "Stopped")
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<h4>Quick Access</h4>
+<ul class="list-group">
+    <li class="list-group-item">
+        <a asp-controller="Sensors" asp-action="Index">Manage Sensors</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="Simulation" asp-action="Index">Data Simulation</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="AlertThresholds" asp-action="Index">Alert Thresholds</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-controller="Admin" asp-action="Index">Manage Monitoring Admins</a>
+    </li>
+</ul>

@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AirQualityDashboard.ViewModels.DatabaseSettingsViewModel
+
+
+<div class="container mt-4">
+    <h2>Database Settings</h2>
+    <hr />
+
+    <div class="card">
+        <div class="card-header">
+            <h4>Current Database Configuration</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Provider</dt>
+                <dd class="col-sm-9">@Model.DatabaseProvider</dd>
+
+                <dt class="col-sm-3">Connection String</dt>
+                <dd class="col-sm-9">
+                    <code>@Model.ConnectionString</code>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h4>Applied Migrations</h4>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                @foreach (var migration in Model.Migrations)
+                {
+                    <li class="list-group-item">@migration</li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>

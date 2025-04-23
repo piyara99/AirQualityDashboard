@@ -8,8 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using AirQualityDashboard.Data;
 using AirQualityDashboard.Models;
 
-namespace AirQualityDashboard.Controllers_Admin
+namespace AirQualityDashboard.Areas.MonitoringAdmin.Controllers
 {
+    [Area("MonitoringAdmin")]
     public class SensorsController : Controller
     {
         private readonly AppDbContext _context;

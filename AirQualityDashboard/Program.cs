@@ -39,6 +39,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<SystemAdminService>();
 
 var app = builder.Build();
 
@@ -52,6 +53,24 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+
+app.Use(async (context, next) =>
+{
+    var adminService = context.RequestServices.GetRequiredService<SystemAdminService>();
+    var maintenanceConfig = (await adminService.GetAllConfigsAsync())
+        .FirstOrDefault(c => c.ConfigKey == "MaintenanceMode");
+
+    if (maintenanceConfig?.ConfigValue == "true" &&
+        !context.User.IsInRole("SystemAdmin") &&
+        !context.Request.Path.StartsWithSegments("/Account"))
+    {
+        context.Response.Redirect("/Account/Maintenance");
+        return;
+    }
+
+    await next();
+});
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -87,7 +106,12 @@ using (var scope = app.Services.CreateScope())
 
 app.MapRazorPages();
 app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Public}/{action=Index}/{id?}");
+
 
 await app.RunAsync();

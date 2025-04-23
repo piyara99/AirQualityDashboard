@@ -7,9 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Simulation\**" />
+    <Content Remove="Views\Simulation\**" />
+    <EmbeddedResource Remove="Views\Simulation\**" />
+    <None Remove="Views\Simulation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
@@ -21,6 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\MonitoringAdmin\Views\AlertThresholds\" />
+    <Folder Include="Areas\MonitoringAdmin\Views\Simulations\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

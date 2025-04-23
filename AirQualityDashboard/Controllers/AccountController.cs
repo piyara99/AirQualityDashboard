@@ -10,11 +10,13 @@ namespace AirQualityDashboard.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         // GET: /Account/Login
@@ -24,18 +26,37 @@ namespace AirQualityDashboard.Controllers
         }
 
         [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
 
             if (result.Succeeded)
-                return RedirectToAction("Index", "Public");
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+
+                if (roles.Contains("SystemAdmin"))
+                    return RedirectToAction("Index", "SystemAdmin");
+
+                if (roles.Contains("MonitoringAdmin"))
+                    return RedirectToAction("Dashboard", "MonitoringAdmin");
+
+                return RedirectToAction("Index", "Public"); // fallback for other roles
+            }
 
             ModelState.AddModelError("", "Invalid login attempt.");
             return View(model);
         }
+
 
         // GET: /Account/Register
         public IActionResult Register()

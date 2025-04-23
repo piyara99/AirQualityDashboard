@@ -1,0 +1,97 @@
+﻿@model List<SystemConfig>
+
+<div class="container mt-4">
+    <h2 class="mb-4">System Administration Dashboard</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5>System Configuration</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Key</th>
+                                <th>Value</th>
+                                <th>Description</th>
+                                <th>Last Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var config in Model)
+                            {
+                                <tr>
+                                    <td>@config.ConfigKey</td>
+                                    <td>@config.ConfigValue</td>
+                                    <td>@config.Description</td>
+                                    <td>@config.LastUpdated.ToString("g")</td>
+                                    <td>
+                                        <a asp-action="EditConfig" asp-route-id="@config.Id"
+                                           class="btn btn-sm btn-outline-primary">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5>System Actions</h5>
+                </div>
+                <div class="card-body">
+                    @{
+                        var maintenanceMode = Model.FirstOrDefault(c => c.ConfigKey == "MaintenanceMode")?.ConfigValue == "true";
+                    }
+                    <form asp-action="ToggleMaintenance" method="post" class="mb-3">
+                        <input type="hidden" name="enable" value="@(!maintenanceMode)" />
+                        <button type="submit" class="btn @(maintenanceMode ? "btn-success" : "btn-warning") btn-block">
+                            @(maintenanceMode ? "Disable Maintenance Mode" : "Enable Maintenance Mode")
+                        </button>
+                    </form>
+
+                    <a asp-action="DatabaseSettings" class="btn btn-secondary btn-block mb-3">
+                        Database Settings
+                    </a>
+
+                    <form asp-action="BackupDatabase" method="post">
+                        <button type="submit" class="btn btn-dark btn-block">
+                            Create Database Backup
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-success text-white">
+            <h5>User Management</h5>
+        </div>
+        <div class="card-body">
+            <a asp-action="UserManagement" class="btn btn-primary">
+                Manage Monitoring Admins
+            </a>
+        </div>
+    </div>
+</div>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["Message"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["Error"]
+    </div>
+}

@@ -9,6 +9,8 @@ namespace AirQualityDashboard.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+        public DbSet<SystemConfig> SystemConfig { get; set; }
+
         public DbSet<SimulationConfig> SimulationConfigs { get; set; }
         public DbSet<Sensor> Sensors { get; set; }
         public DbSet<SensorData> SensorDataRecords { get; set; }
@@ -17,6 +19,8 @@ namespace AirQualityDashboard.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            var seedDate = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
             // Seed Sensors
             modelBuilder.Entity<Sensor>().HasData(
@@ -56,6 +60,25 @@ namespace AirQualityDashboard.Data
             modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
             modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
+
+            modelBuilder.Entity<SystemConfig>().HasData(
+        new SystemConfig
+        {
+            Id = 1,
+            ConfigKey = "SystemName",
+            ConfigValue = "Air Quality Dashboard",
+            Description = "Name of the application",
+            LastUpdated = seedDate
+        },
+        new SystemConfig
+        {
+            Id = 2,
+            ConfigKey = "MaintenanceMode",
+            ConfigValue = "false",
+            Description = "Whether system is in maintenance mode",
+            LastUpdated = seedDate
+        }
+    );
         }
     }
 }
