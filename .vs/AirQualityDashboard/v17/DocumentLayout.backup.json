@@ -3,112 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\controllers\\sensorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\controllers\\sensorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\controllers\\publiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\controllers\\publiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\controllers\\monitoringadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\controllers\\monitoringadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\monitoringadmin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\monitoringadmin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\areas\\monitoringadmin\\controllers\\sensorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\areas\\monitoringadmin\\controllers\\sensorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\data\\identityseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\data\\identityseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\areas\\identity\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\areas\\identity\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\public\\sensordetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\public\\sensordetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\home\\sensordetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\home\\sensordetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\home\\publicmap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\home\\publicmap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\systemadmin\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\systemadmin\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\systemadmin\\usermanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\systemadmin\\usermanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\controllers\\systemadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\controllers\\systemadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\viewmodels\\monitoringdashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\viewmodels\\monitoringdashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\controllers\\simulationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\controllers\\simulationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\views\\shared\\_systemadminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\views\\shared\\_systemadminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\services\\systemadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\services\\systemadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\viewmodels\\databasesettingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\viewmodels\\databasesettingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\models\\systemconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\models\\systemconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|c:\\users\\admin\\source\\repos\\airqualitydashboard\\airqualitydashboard\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85FAB3D1-525C-46C7-85BF-40C4EAAA0DD5}|AirQualityDashboard\\AirQualityDashboard.csproj|solutionrelative:airqualitydashboard\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -118,292 +30,19 @@
       "DocumentGroups": [
         {
           "DockedHeight": 521,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Program.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Program.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Program.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Program.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAYwHIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T02:30:18.859Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PublicController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\PublicController.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Controllers\\PublicController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\PublicController.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Controllers\\PublicController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T02:26:26.778Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "_ViewStart.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-23T02:24:43.543Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SensorsController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Areas\\MonitoringAdmin\\Controllers\\SensorsController.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Areas\\MonitoringAdmin\\Controllers\\SensorsController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Areas\\MonitoringAdmin\\Controllers\\SensorsController.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Areas\\MonitoringAdmin\\Controllers\\SensorsController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-23T02:15:16.619Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "SensorDetails.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Public\\SensorDetails.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Public\\SensorDetails.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Public\\SensorDetails.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Public\\SensorDetails.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-23T02:13:25.361Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "SensorDetails.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Home\\SensorDetails.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Home\\SensorDetails.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Home\\SensorDetails.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Home\\SensorDetails.cshtml",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBAAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-23T02:11:50.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PublicMap.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Home\\PublicMap.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Home\\PublicMap.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Home\\PublicMap.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Home\\PublicMap.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-23T02:11:02.401Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "AirQualityDashboard\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAYwCkAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFcAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-23T01:31:06.097Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\SystemAdmin\\Create.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\SystemAdmin\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\SystemAdmin\\Create.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\SystemAdmin\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T15:43:38.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Dashboard.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\MonitoringAdmin\\Dashboard.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\MonitoringAdmin\\Dashboard.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\MonitoringAdmin\\Dashboard.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\MonitoringAdmin\\Dashboard.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACoAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T14:48:47.623Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "MonitoringDashboardViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\ViewModels\\MonitoringDashboardViewModel.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\ViewModels\\MonitoringDashboardViewModel.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\ViewModels\\MonitoringDashboardViewModel.cs",
-              "RelativeToolTip": "AirQualityDashboard\\ViewModels\\MonitoringDashboardViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T14:47:37.512Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MonitoringAdminController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\MonitoringAdminController.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Controllers\\MonitoringAdminController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\MonitoringAdminController.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Controllers\\MonitoringAdminController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T14:46:52.637Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAgwBAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T14:40:38.358Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "SimulationController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\SimulationController.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Controllers\\SimulationController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\SimulationController.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Controllers\\SimulationController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAwBYAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T14:40:21.862Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SensorsController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\SensorsController.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Controllers\\SensorsController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\SensorsController.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Controllers\\SensorsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T14:40:15.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T14:39:23.033Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Account\\Register.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Account\\Register.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAQwBIAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T13:48:07.424Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAQwA8AAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T13:47:58.499Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "_SystemAdminLayout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Shared\\_SystemAdminLayout.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Shared\\_SystemAdminLayout.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Shared\\_SystemAdminLayout.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Shared\\_SystemAdminLayout.cshtml",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAUwBMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T13:37:41.292Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "_Sidebar.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Shared\\_Sidebar.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Shared\\_Sidebar.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Shared\\_Sidebar.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Shared\\_Sidebar.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T13:34:38.976Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "_AdminLayout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Shared\\_AdminLayout.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\Shared\\_AdminLayout.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\Shared\\_AdminLayout.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\Shared\\_AdminLayout.cshtml",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAC4AAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T13:34:16.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UserManagement.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\SystemAdmin\\UserManagement.cshtml",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\SystemAdmin\\UserManagement.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\SystemAdmin\\UserManagement.cshtml",
-              "RelativeToolTip": "AirQualityDashboard\\Views\\SystemAdmin\\UserManagement.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-22T12:52:49.239Z",
+              "WhenOpened": "2025-04-24T06:23:10.555Z",
               "EditorCaption": ""
             },
             {
@@ -424,68 +63,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "DatabaseSettingsViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\ViewModels\\DatabaseSettingsViewModel.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\ViewModels\\DatabaseSettingsViewModel.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\ViewModels\\DatabaseSettingsViewModel.cs",
-              "RelativeToolTip": "AirQualityDashboard\\ViewModels\\DatabaseSettingsViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T08:31:10.661Z",
+              "DocumentIndex": 2,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "AirQualityDashboard\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "AirQualityDashboard\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-24T06:23:31.376Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "SystemAdminService.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Services\\SystemAdminService.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Services\\SystemAdminService.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Services\\SystemAdminService.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Services\\SystemAdminService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "IdentitySeeder.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Data\\IdentitySeeder.cs",
+              "RelativeDocumentMoniker": "AirQualityDashboard\\Data\\IdentitySeeder.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Data\\IdentitySeeder.cs",
+              "RelativeToolTip": "AirQualityDashboard\\Data\\IdentitySeeder.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAYwFAAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T07:21:36.747Z",
+              "WhenOpened": "2025-04-23T14:20:55.889Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "SystemConfig.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Models\\SystemConfig.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Models\\SystemConfig.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Models\\SystemConfig.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Models\\SystemConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T07:19:46.073Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "SystemAdminController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\SystemAdminController.cs",
-              "RelativeDocumentMoniker": "AirQualityDashboard\\Controllers\\SystemAdminController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\SystemAdminController.cs",
-              "RelativeToolTip": "AirQualityDashboard\\Controllers\\SystemAdminController.cs",
-              "ViewState": "AgIAAL8AAAAAAAAAAAAQwMsAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T07:19:10.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 0,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "AirQualityDashboard\\Data\\AppDbContext.cs",
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Data\\AppDbContext.cs",
               "RelativeToolTip": "AirQualityDashboard\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAAwE4AAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T07:04:01.081Z",
+              "WhenOpened": "2025-04-23T14:20:49.121Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "AirQualityDashboard\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\AirQualityDashboard\\AirQualityDashboard\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "AirQualityDashboard\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T03:39:36.187Z"
             }
           ]
         },
