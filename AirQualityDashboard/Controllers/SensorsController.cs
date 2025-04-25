@@ -54,7 +54,7 @@ namespace AirQualityDashboard.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Latitude,Longitude,IsActive,SensorIndex")] Sensor sensor)
+        public async Task<IActionResult> Create([Bind("Id,LocationName,Name,Latitude,Longitude,IsActive,SensorIndex")] Sensor sensor)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace AirQualityDashboard.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SensorId,Name,Latitude,Longitude,IsActive,SensorIndex")] Sensor sensor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,LocationName,Name,Latitude,Longitude,IsActive,SensorIndex")] Sensor sensor)
         {
             if (id != sensor.Id)
             {

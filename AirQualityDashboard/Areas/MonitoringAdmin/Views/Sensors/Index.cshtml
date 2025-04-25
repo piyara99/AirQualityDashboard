@@ -1,65 +1,54 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @model IEnumerable<AirQualityDashboard.Models.Sensor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sensors";
 }
 
-<h1>Index</h1>
+<h1>Sensors</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-area="MonitoringAdmin" asp-controller="Sensors" asp-action="Create">Create New Sensor</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LocationName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Latitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Longitude)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SensorIndex)
-            </th>
-            <th></th>
+            <th>Location</th>
+            <th>Name</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Active</th>
+            <th>Sensor Index</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SensorIndex)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LocationName</td>
+                <td>@item.Name</td>
+                <td>@item.Latitude</td>
+                <td>@item.Longitude</td>
+                <td>
+                    @if (item.IsActive)
+                    {
+                        <span class="badge bg-success">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Inactive</span>
+                    }
+                </td>
+                <td>@item.SensorIndex</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-area="MonitoringAdmin" asp-controller="Sensors" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-sm btn-warning" asp-area="MonitoringAdmin" asp-controller="Sensors" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-sm btn-danger" asp-area="MonitoringAdmin" asp-controller="Sensors" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
