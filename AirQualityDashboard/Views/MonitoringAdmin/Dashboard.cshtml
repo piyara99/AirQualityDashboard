@@ -3,10 +3,38 @@
     ViewData["Title"] = "Monitoring Admin Dashboard";
 }
 
-<h2>Monitoring Admin Dashboard</h2>
+@functions {
+    public class Sensor
+    {
+        public string Name { get; set; }
+        public double AirQualityIndex { get; set; }
+        public bool IsActive { get; set; }
+        public string Type { get; set; }
+        public DateTime LastUpdated { get; set; }
+    }
+
+    public class MonitoringDashboardViewModel
+    {
+        public int TotalSensors { get; set; }
+        public int ActiveSensors { get; set; }
+        public int InactiveSensors => TotalSensors - ActiveSensors;
+        public double AverageAirQualityIndex { get; set; }
+        public DateTime LastUpdateTime { get; set; }
+        public int HealthySensors { get; set; }
+        public int WarningSensors { get; set; }
+        public int CriticalSensors { get; set; }
+        public List<Sensor> TopSensors { get; set; } = new List<Sensor>();
+        public Dictionary<string, int> SensorTypeCounts { get; set; } = new Dictionary<string, int>();
+        public List<DateTime> Last7Days { get; set; } = new List<DateTime>();
+        public List<int> DailySensorUpdates { get; set; } = new List<int>();
+        public bool SimulationRunning { get; set; }
+    }
+}
+
+<h2 class="mb-4">Monitoring Admin Dashboard</h2>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card text-white bg-primary mb-3">
             <div class="card-header">Total Sensors</div>
             <div class="card-body">
@@ -15,7 +43,7 @@
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card text-white bg-success mb-3">
             <div class="card-header">Active Sensors</div>
             <div class="card-body">
@@ -24,32 +52,114 @@
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-secondary mb-3">
+            <div class="card-header">Inactive Sensors</div>
+            <div class="card-body">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
         <div class="card text-white bg-warning mb-3">
             <div class="card-header">Simulation Status</div>
             <div class="card-body">
-                <h5 class="card-title">
-                    @(Model.SimulationRunning ? "Running" : "Stopped")
-                </h5>
+                <h5 class="card-title">@(Model.SimulationRunning ? "Running" : "Stopped")</h5>
             </div>
         </div>
     </div>
 </div>
 
-<hr />
+<div class="row">
+    <div class="col-md-6">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-header">Average AQI</div>
+            <div class="card-body">
+                
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">Sensor Health Status</div>
+            <div class="card-body">
+                
+            </div>
+        </div>
+    </div>
+</div>
 
-<h4>Quick Access</h4>
-<ul class="list-group">
-    <li class="list-group-item">
-        <a asp-controller="Sensors" asp-action="Index">Manage Sensors</a>
-    </li>
-    <li class="list-group-item">
-        <a asp-controller="Simulation" asp-action="Index">Data Simulation</a>
-    </li>
-    <li class="list-group-item">
-        <a asp-controller="AlertThresholds" asp-action="Index">Alert Thresholds</a>
-    </li>
-    <li class="list-group-item">
-        <a asp-controller="Admin" asp-action="Index">Manage Monitoring Admins</a>
-    </li>
-</ul>
+<div class="card mb-4">
+    <div class="card-header">Top 5 Sensors by AQI</div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>AQI</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+          
+              
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Sensor Type Breakdown</div>
+            <div class="card-body">
+                <canvas id="sensorTypeChart" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Daily Sensor Updates (Last 7 Days)</div>
+            <div class="card-body">
+                <canvas id="dailyChart" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">Sensor Locations</div>
+    <div class="card-body">
+        <div style="height: 300px; background: #f8f9fa; display: flex; justify-content: center; align-items: center;">
+            Map integration coming soon...
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const sensorTypeCtx = document.getElementById('sensorTypeChart').getContext('2d');
+        new Chart(sensorTypeCtx, {
+            type: 'pie',
+            data: {
+               
+                datasets: [{
+                   
+                    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#17a2b8']
+                }]
+            }
+        });
+
+        const dailyCtx = document.getElementById('dailyChart').getContext('2d');
+        new Chart(dailyCtx, {
+            type: 'bar',
+            data: {
+               
+                    label: 'Updates Per Day',
+                    
+                    backgroundColor: '#6c757d'
+                }]
+            }
+        });
+    </script>
+}
