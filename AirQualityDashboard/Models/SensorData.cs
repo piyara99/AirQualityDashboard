@@ -18,5 +18,8 @@ namespace AirQualityDashboard.Models
 
         [Required]
         public DateTime Timestamp { get; set; }
+
+        public float PM25 { get; set; }  // micrograms/m³
+        public float PM10 { get; set; }  // micrograms/m³
     }
 }

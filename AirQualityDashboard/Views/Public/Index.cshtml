@@ -14,6 +14,21 @@
         margin: 0;
         padding: 0;
         height: 100%;
+        position: relative;
+    }
+
+    h2 {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+        z-index: 1000;
+        background: white;
+        padding: 10px 15px;
+        margin: 0;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     #map {
@@ -21,21 +36,33 @@
         height: 100vh;
     }
 
-    .legend {
+    #sensor-list {
+        position: absolute;
+        top: 100px; /* Added padding below title */
+        left: 10px;
         background: white;
         padding: 10px;
-        font-size: 12px;
-        line-height: 18px;
-        color: #555;
+        z-index: 1000;
+        max-height: 300px;
+        overflow-y: auto;
+        width: 200px;
+        font-size: 13px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-        .legend i {
-            width: 18px;
-            height: 18px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
+    #sensor-chart-container {
+        position: absolute;
+        bottom: 70px; /* Adjusted from 10px to prevent overlap with footer */
+        left: 10px;
+        width: 350px;
+        height: 250px;
+        background: white;
+        padding: 10px;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
     .top-right-links {
         position: absolute;
@@ -44,22 +71,61 @@
         z-index: 1000;
     }
 
-        .top-right-links a {
-            margin-left: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
+    .top-right-links a {
+        margin-left: 10px;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* Title Style */
+    
 </style>
+
+<h2 style="position:absolute; top:20px; left:50px; z-index:1000; background:white; padding:10px 15px; margin:0; border-radius:5px; font-size:20px; font-weight:bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    🌍 Colombo Air Quality Dashboard
+</h2>
 
 <div id="map"></div>
 
-<div id="sensor-list" style="position:absolute; top:60px; left:10px; background:white; padding:10px; z-index:1000; max-height:300px; overflow-y:auto;">
+<div id="sensor-list" class="custom-scrollbar" style="
+    position:absolute;
+    top:100px;
+    left:10px;
+    background:white;
+    padding:10px;
+    z-index:1000;
+    max-height:300px;
+    overflow-y:auto;
+    width:200px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+">
+
     <h5 style="margin-top:0;">Sensors</h5>
     <ul id="sensor-items" style="list-style:none; padding:0; margin:0;">
     </ul>
 </div>
 
-<div id="sensor-chart-container" style="position:absolute; bottom:10px; left:10px; width:350px; height:250px; background:white; padding:10px; z-index:1000; display:none;">
+<div id="sensor-chart-container" style="position:absolute; bottom:70px; left:10px; width:350px; height:250px; background:white; padding:10px; z-index:1000; display:none;">
     <canvas id="sensor-chart" style="width:100%; height:200px;"></canvas>
     <div style="margin-top:5px;">
         <button onclick="loadHistoricalData('day')">Day</button>
@@ -68,14 +134,13 @@
     </div>
 </div>
 
-
 <div class="top-right-links">
     <a href="/Account/Login">Login</a> |
     <a href="/Account/Register">Register</a>
 </div>
 
 <script>
-       var map = L.map('map').setView([6.9271, 79.8612], 11); // Colombo center
+    var map = L.map('map').setView([6.9271, 79.8612], 11); // Colombo center
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
@@ -122,30 +187,74 @@
             })
         }).addTo(map);
 
-        marker.bindPopup(`
-            <div id="popup-${sensor.Id}" style="width: 250px;">
-                <strong>${sensor.LocationName}</strong><br/>
-                <div style="background-color:${getColor(aqi)}; color: black; padding: 5px; margin-top:5px; text-align:center;">
-                    ${getCategory(aqi)}<br/>AQI: ${aqi}
+               marker.bindPopup(`
+        <div id="popup-${sensor.Id}" style="
+            width: 220px;
+            font-size: 12px;
+            max-height: 260px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f1f1f1;
+            padding: 5px;
+        " class="custom-scrollbar">
+            <div style="text-align: center; margin-bottom: 6px;">
+                <div style="font-size: 26px;">😊</div>
+                <div style="
+                    font-size: 15px;
+                    font-weight: bold;
+                    background-color: ${getColor(aqi)};
+                    padding: 4px;
+                    border-radius: 4px;
+                    color: #000;
+                    margin-top: 4px;
+                ">
+                    ${aqi} – ${getCategory(aqi).replace(/[\u{1F600}-\u{1F64F}]/gu, '')}
                 </div>
-                <small>Updated just now</small><br/>
-                <div style="margin-top:8px;">
-                    <select id="range-select-${sensor.Id}" style="width: 100%; padding:4px;">
-                        <option value="day">Last Day</option>
-                        <option value="week">Last Week</option>
-                        <option value="month">Last Month</option>
-                    </select>
-                </div>
-                <canvas id="chart-${sensor.Id}" width="250" height="150" style="margin-top:10px;"></canvas>
             </div>
-        `);
 
-        marker.on('popupopen', function () {
-            loadChart(sensor.Id);
-        });
+            <div style="text-align: center; font-size: 10px; margin-bottom: 6px;">
+                Updated just now
+            </div>
+
+            <div>
+                <strong>PM Data</strong>
+                <input type="range" min="1" max="3" value="1" class="slider" id="slider-${sensor.Id}" style="width: 100%;">
+            </div>
+
+            <div style="margin-top: 6px;">
+                <canvas id="pm-chart-${sensor.Id}" width="200" height="80"></canvas>
+            </div>
+
+            <div style="margin-top: 8px;">
+                <canvas id="year-chart-${sensor.Id}" width="200" height="40"></canvas>
+            </div>
+        </div>
+    `);
+
+
+
+               marker.on('popupopen', function () {
+        // Load hourly and monthly data dynamically
+        fetch(`/Home/GetHourlyPm?sensorId=${sensor.Id}`)
+            .then(response => response.json())
+            .then(data => {
+                renderMiniPmChart(sensor.Id, data.pm25, data.pm10);
+            });
+
+        fetch(`/Home/GetMonthlyPm?sensorId=${sensor.Id}`)
+            .then(response => response.json())
+            .then(data => {
+                renderYearlyPmChart(sensor.Id, data.months, data.values);
+            });
+    });
+
+
     });
 
     // 📊 Chart instances storage
+    var chartInstances = {};
+
+        // 📊 Chart instances storage
     var chartInstances = {};
 
     function loadChart(sensorId) {
@@ -158,7 +267,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (chartInstances[sensorId]) {
-                        chartInstances[sensorId].destroy();
+                        chartInstances[sensorId].destroy(); // Ensure previous chart instance is destroyed
                     }
 
                     chartInstances[sensorId] = new Chart(canvas, {
@@ -204,6 +313,69 @@
             });
         }
     }
+
+
+        function renderMiniPmChart(sensorId, pm25Data, pm10Data) {
+        const ctx = document.getElementById(`pm-chart-${sensorId}`);
+        if (!ctx) return;
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: pm25Data.map((_, i) => `${i}h`),
+                datasets: [
+                    {
+                        label: 'PM2.5',
+                        data: pm25Data,
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+                    },
+                    {
+                        label: 'PM10',
+                        data: pm10Data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                },
+                plugins: {
+                    legend: { display: true }
+                }
+            }
+        });
+    }
+
+    function renderYearlyPmChart(sensorId, months, values) {
+        const ctx = document.getElementById(`year-chart-${sensorId}`);
+        if (!ctx) return;
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: months, // E.g., ['Jan', 'Feb', ..., 'Dec']
+                datasets: [{
+                    label: 'PM2.5',
+                    data: values,
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
+
 
     // 🖍️ Legend
     var legend = L.control({ position: 'bottomright' });
@@ -284,7 +456,20 @@
             .catch(error => console.error('Error loading historical AQI data:', error));
     }
 
+    // Adjust chart container positioning on window resize
+    window.addEventListener('resize', adjustChartPosition);
 
+        function adjustChartPosition() {
+        var chartContainer = document.getElementById('sensor-chart-container');
+        var footerHeight = 60; // Adjust this to match your footer's height (if applicable)
+        var sensorListHeight = document.getElementById('sensor-list').offsetHeight; // Get height of the sensor list
+        var windowHeight = window.innerHeight;
+
+        // Adjust the available space for the chart container
+        var availableHeight = windowHeight - footerHeight - sensorListHeight - 20; // Subtracting 20px for spacing
+
+        // Update the position of the chart container dynamically
+        chartContainer.style.bottom = `${availableHeight}px`;
+    }
 
 </script>
-

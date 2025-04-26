@@ -1,5 +1,4 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
 @model AirQualityDashboard.Models.Sensor
 
 @{
@@ -9,36 +8,44 @@
 <h1>Create New Sensor</h1>
 
 <form asp-action="Create">
+    @Html.AntiForgeryToken()
+
     <div class="form-group">
         <label asp-for="LocationName" class="control-label"></label>
-        <input asp-for="LocationName" class="form-control" />
+        <input asp-for="LocationName" class="form-control" placeholder="e.g. Colombo Fort" />
         <span asp-validation-for="LocationName" class="text-danger"></span>
     </div>
+
     <div class="form-group">
         <label asp-for="Name" class="control-label"></label>
-        <input asp-for="Name" class="form-control" />
+        <input asp-for="Name" class="form-control" placeholder="Sensor name or ID" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
+
     <div class="form-group">
         <label asp-for="Latitude" class="control-label"></label>
-        <input asp-for="Latitude" class="form-control" />
+        <input asp-for="Latitude" class="form-control" placeholder="e.g. 6.9271" />
         <span asp-validation-for="Latitude" class="text-danger"></span>
     </div>
+
     <div class="form-group">
         <label asp-for="Longitude" class="control-label"></label>
-        <input asp-for="Longitude" class="form-control" />
+        <input asp-for="Longitude" class="form-control" placeholder="e.g. 79.8612" />
         <span asp-validation-for="Longitude" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="IsActive" class="control-label"></label>
+
+    <div class="form-check mb-3">
         <input asp-for="IsActive" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label"></label>
         <span asp-validation-for="IsActive" class="text-danger"></span>
     </div>
+
     <div class="form-group">
         <label asp-for="SensorIndex" class="control-label"></label>
-        <input asp-for="SensorIndex" class="form-control" />
+        <input asp-for="SensorIndex" class="form-control" placeholder="e.g. 101 or PA-03" />
         <span asp-validation-for="SensorIndex" class="text-danger"></span>
     </div>
+
     <br />
     <button type="submit" class="btn btn-success">Create</button>
     <a asp-action="Index" class="btn btn-secondary">Back</a>
