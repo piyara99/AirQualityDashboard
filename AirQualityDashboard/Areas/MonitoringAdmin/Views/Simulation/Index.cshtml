@@ -1,0 +1,68 @@
+﻿@model AirQualityDashboard.Models.SimulationConfig
+
+@{
+    ViewData["Title"] = "Simulation Management";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="card-title mb-0">Simulation Management</h4>
+        </div>
+        <div class="card-body">
+            <h5>Configure Simulation Settings</h5>
+
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Message"]
+                </div>
+            }
+
+            <form asp-action="UpdateConfig" method="post">
+                <div class="mb-3">
+                    <label for="FrequencyInSeconds" class="form-label">Frequency (seconds):</label>
+                    <input asp-for="FrequencyInSeconds" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="BaseAQI" class="form-label">Base AQI:</label>
+                    <input asp-for="BaseAQI" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="VariationRange" class="form-label">Variation Range:</label>
+                    <input asp-for="VariationRange" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Configuration</button>
+            </form>
+
+            <hr />
+
+            <div class="d-flex">
+                <form asp-action="Start" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-success me-2">Start Simulation</button>
+                </form>
+
+                <form asp-action="Stop" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Stop Simulation</button>
+                </form>
+            </div>
+
+            <hr />
+
+            <p>
+                <strong>Status:</strong>
+                @if (ViewBag.IsRunning)
+                {
+                    <span class="badge bg-success">Running</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Stopped</span>
+                }
+            </p>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,12 @@ namespace AirQualityDashboard.Data
         public DbSet<SensorData> SensorDataRecords { get; set; }
         public DbSet<AlertThreshold> AlertThresholds { get; set; }
 
+        public DbSet<AlertConfig> AlertConfig { get; set; }
+
+        public DbSet<AQIReading> AQIReadings { get; set; }
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

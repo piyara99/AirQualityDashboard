@@ -41,12 +41,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="@Url.Action("Index", "Simulations")" class="nav-link text-white">
+                        <a href="@Url.Action("Index", "Simulation", new { area = "MonitoringAdmin" })" class="nav-link text-white">
                             <i class="bi bi-cloud"></i> Manage Simulations
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="@Url.Action("Index", "AlertThresholds")" class="nav-link text-white">
+                        <a href="@Url.Action("Settings", "Alert", new { area = "MonitoringAdmin" })" class="nav-link text-white">
                             <i class="bi bi-bell"></i> Manage Alerts
                         </a>
                     </li>
@@ -63,7 +63,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="@Url.Action("Index", "Home")">Logout</a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Index", "Public")">Logout</a></li>
                     </ul>
                 </div>
             </div>

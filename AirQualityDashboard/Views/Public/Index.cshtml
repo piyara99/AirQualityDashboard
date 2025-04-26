@@ -156,13 +156,14 @@
     }
 
     function getCategory(aqi) {
-        if (aqi <= 50) return "😊 Good";
-        if (aqi <= 100) return "😐 Moderate";
-        if (aqi <= 150) return "😷 Unhealthy (Sensitive)";
-        if (aqi <= 200) return "😷 Unhealthy";
-        if (aqi <= 300) return "☠️ Very Unhealthy";
-        return "☠️ Hazardous";
+        if (aqi <= 50) return { emoji: "😊", category: "Good" }; // Good
+        if (aqi <= 100) return { emoji: "😐", category: "Moderate" }; // Moderate
+        if (aqi <= 150) return { emoji: "😷", category: "Unhealthy (Sensitive)" }; // Unhealthy for Sensitive Groups
+        if (aqi <= 200) return { emoji: "🤧", category: "Unhealthy" }; // Unhealthy
+        if (aqi <= 300) return { emoji: "☠️", category: "Very Unhealthy" }; // Very Unhealthy
+        return { emoji: "☠️", category: "Hazardous" }; // Hazardous
     }
+
 
     // 🔥 Load sensors from backend
     var sensors = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
@@ -186,8 +187,7 @@
                 iconAnchor: [15, 42]
             })
         }).addTo(map);
-
-               marker.bindPopup(`
+            marker.bindPopup(`
         <div id="popup-${sensor.Id}" style="
             width: 220px;
             font-size: 12px;
@@ -198,7 +198,7 @@
             padding: 5px;
         " class="custom-scrollbar">
             <div style="text-align: center; margin-bottom: 6px;">
-                <div style="font-size: 26px;">😊</div>
+                <div style="font-size: 26px;">${getCategory(aqi).emoji}</div> <!-- Dynamic emoji here -->
                 <div style="
                     font-size: 15px;
                     font-weight: bold;
@@ -208,7 +208,7 @@
                     color: #000;
                     margin-top: 4px;
                 ">
-                    ${aqi} – ${getCategory(aqi).replace(/[\u{1F600}-\u{1F64F}]/gu, '')}
+                    ${aqi} – ${getCategory(aqi).category} <!-- Category text here -->
                 </div>
             </div>
 

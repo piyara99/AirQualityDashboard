@@ -3,6 +3,7 @@
     ViewData["Title"] = "Monitoring Admin Dashboard";
 }
 
+
 @functions {
     public class Sensor
     {
@@ -38,7 +39,7 @@
         <div class="card text-white bg-primary mb-3">
             <div class="card-header">Total Sensors</div>
             <div class="card-body">
-                <h5 class="card-title">3</h5>
+                <h5 class="card-title">@Model.TotalSensors</h5>
             </div>
         </div>
     </div>
@@ -47,7 +48,7 @@
         <div class="card text-white bg-success mb-3">
             <div class="card-header">Active Sensors</div>
             <div class="card-body">
-                <h5 class="card-title">3</h5>
+                <h5 class="card-title">@Model.ActiveSensors</h5>
             </div>
         </div>
     </div>
@@ -56,7 +57,7 @@
         <div class="card text-white bg-secondary mb-3">
             <div class="card-header">Inactive Sensors</div>
             <div class="card-body">
-                <h5 class="card-title">0</h5>
+                <h5 class="card-title">@Model.InactiveSensors</h5>
             </div>
         </div>
     </div>
@@ -76,7 +77,7 @@
         <div class="card text-white bg-info mb-3">
             <div class="card-header">Average AQI</div>
             <div class="card-body">
-                <h5 class="card-title">72.5</h5>
+                <h5 class="card-title">@Model.AverageAirQualityIndex</h5>
             </div>
         </div>
     </div>
@@ -86,19 +87,22 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <span class="badge badge-success">Healthy: 2</span>
+                        <span class="badge badge-success">Healthy: @Model.HealthySensors</span>
                     </div>
                     <div class="col-md-4">
-                        <span class="badge badge-warning">Warning: 1</span>
+                        <span class="badge badge-warning">Warning: @Model.WarningSensors</span>
                     </div>
                     <div class="col-md-4">
-                        <span class="badge badge-danger">Critical: 0</span>
+                        <span class="badge badge-danger">Critical: @Model.CriticalSensors</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <div class="card mb-4">
     <div class="card-header">Top Sensors by AQI</div>
@@ -112,21 +116,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Colombo South</td>
-                    <td>85</td>
-                    <td><span class="badge badge-warning">Warning</span></td>
-                </tr>
-                <tr>
-                    <td>Colombo North</td>
-                    <td>70</td>
-                    <td><span class="badge badge-success">Healthy</span></td>
-                </tr>
-                <tr>
-                    <td>Colombo Central</td>
-                    <td>62.5</td>
-                    <td><span class="badge badge-success">Healthy</span></td>
-                </tr>
+                @foreach (var sensor in Model.TopSensors)
+                {
+                    <tr>
+                        <td>@sensor.Name</td>
+                        <td>@sensor.AirQualityIndex</td>
+                        <td>
+                            <span class="badge @(sensor.AirQualityIndex <= 50 ? "badge-success" :
+                                                  sensor.AirQualityIndex <= 100 ? "badge-warning" :
+                                                  "badge-danger")">
+                                @(sensor.AirQualityIndex <= 50 ? "Healthy" :
+                                    sensor.AirQualityIndex <= 100 ? "Moderate" :
+                                    sensor.AirQualityIndex <= 150 ? "Unhealthy for Sensitive Groups" : "Unhealthy")
+                            </span>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

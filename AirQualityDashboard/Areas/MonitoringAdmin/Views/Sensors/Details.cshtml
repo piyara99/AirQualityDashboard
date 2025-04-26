@@ -6,31 +6,37 @@
     ViewData["Title"] = "Sensor Details";
 }
 
-<h1>Sensor Details</h1>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="card-title mb-0">Sensor Details</h4>
+        </div>
+        <div class="card-body">
+            <h4>Sensor Information</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">Location Name</dt>
+                <dd class="col-sm-10">@Model.LocationName</dd>
 
-<div>
-    <h4>Sensor</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">Location Name</dt>
-        <dd class="col-sm-10">@Model.LocationName</dd>
+                <dt class="col-sm-2">Name</dt>
+                <dd class="col-sm-10">@Model.Name</dd>
 
-        <dt class="col-sm-2">Name</dt>
-        <dd class="col-sm-10">@Model.Name</dd>
+                <dt class="col-sm-2">Latitude</dt>
+                <dd class="col-sm-10">@Model.Latitude</dd>
 
-        <dt class="col-sm-2">Latitude</dt>
-        <dd class="col-sm-10">@Model.Latitude</dd>
+                <dt class="col-sm-2">Longitude</dt>
+                <dd class="col-sm-10">@Model.Longitude</dd>
 
-        <dt class="col-sm-2">Longitude</dt>
-        <dd class="col-sm-10">@Model.Longitude</dd>
+                <dt class="col-sm-2">Is Active</dt>
+                <dd class="col-sm-10">@Model.IsActive</dd>
 
-        <dt class="col-sm-2">Is Active</dt>
-        <dd class="col-sm-10">@Model.IsActive</dd>
-
-        <dt class="col-sm-2">Sensor Index</dt>
-        <dd class="col-sm-10">@Model.SensorIndex</dd>
-    </dl>
+                <dt class="col-sm-2">Sensor Index</dt>
+                <dd class="col-sm-10">@Model.SensorIndex</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
 </div>
-
-<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-<a asp-action="Index" class="btn btn-secondary">Back to List</a>

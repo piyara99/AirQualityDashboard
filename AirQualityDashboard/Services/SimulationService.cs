@@ -10,10 +10,58 @@ namespace AirQualityDashboard.Services
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<SimulationService> _logger;
 
+        private CancellationTokenSource _cts = new();
+        private bool _isRunning = false;
+
         public SimulationService(IServiceProvider serviceProvider, ILogger<SimulationService> logger)
         {
             _serviceProvider = serviceProvider;
             _logger = logger;
+        }
+
+
+        public void StartSimulation()
+        {
+            _isRunning = true;
+            _cts.Cancel(); // cancel any existing simulation
+            _cts = new CancellationTokenSource();
+            Task.Run(() => RunSimulationLoop(_cts.Token));
+        }
+
+        public void StopSimulation()
+        {
+            _isRunning = false;
+            _cts.Cancel();
+        }
+
+        public bool IsRunning() => _isRunning;
+
+        private async Task RunSimulationLoop(CancellationToken token)
+        {
+            while (!token.IsCancellationRequested && _isRunning)
+            {
+                using var scope = _serviceProvider.CreateScope();
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                var config = db.SimulationConfigs.FirstOrDefault();
+
+                if (config == null)
+                {
+                    _logger.LogWarning("SimulationConfig not found.");
+                    await Task.Delay(5000, token);
+                    continue;
+                }
+
+                var random = new Random();
+                int variation = random.Next(-config.VariationRange, config.VariationRange + 1);
+                int simulatedAQI = config.BaseAQI + variation;
+
+                // Log or save simulated data to DB
+                _logger.LogInformation($"Simulated AQI: {simulatedAQI}");
+
+                // Wait based on frequency
+                await Task.Delay(config.FrequencyInSeconds * 1000, token);
+            }
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

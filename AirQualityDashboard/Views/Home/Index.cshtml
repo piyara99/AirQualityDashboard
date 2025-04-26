@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <!-- Sensor List Column -->
+            <!-- Sensor List Column with scroll -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
@@ -63,15 +63,15 @@
                             <i class="bi bi-speedometer2"></i> Sensor Status
                         </h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-x: auto;">
                         @if (Model == null || !Model.Any())
                         {
                             <div class="alert alert-warning">No sensors available</div>
                         }
                         else
                         {
-                            <div class="table-responsive">
-                                <table class="table table-hover">
+                            <div style="min-width: 500px;">
+                                <table class="table table-hover table-sm">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -104,6 +104,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Chart Section -->
@@ -131,12 +132,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <canvas id="aqiChart" height="300"></canvas>
+                    <div class="card-body" style="overflow-x: auto;">
+                        <canvas id="aqiChart" style="min-width: 100%; height: 250px;"></canvas>
                     </div>
                 </div>
             </div>
         </div>
+
+
     </div>
 
     <script>

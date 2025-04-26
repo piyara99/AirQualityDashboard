@@ -13,6 +13,9 @@ public class Sensor
     public bool IsActive { get; set; }
     public int SensorIndex { get; set; }
 
+    public string? Type { get; set; }  // e.g., "Urban", "Industrial", etc.
+
+
     public ICollection<SensorData> SensorDataRecords { get; set; } = new List<SensorData>();
 
 }

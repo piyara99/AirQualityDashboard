@@ -1,0 +1,39 @@
+﻿@model AirQualityDashboard.ViewModels.AlertSettingsViewModel
+
+@{
+    ViewData["Title"] = "Alert Configuration";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="card-title mb-0">Alert Configuration</h4>
+        </div>
+        <div class="card-body">
+            <h5>Set your AQI Thresholds for Alerts</h5>
+
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Message"]
+                </div>
+            }
+
+            <form asp-action="Settings" method="post">
+                <div class="mb-3">
+                    <label for="ModerateThreshold" class="form-label">Moderate AQI Threshold</label>
+                    <input asp-for="ModerateThreshold" class="form-control" />
+                    <span asp-validation-for="ModerateThreshold" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="UnhealthyThreshold" class="form-label">Unhealthy AQI Threshold</label>
+                    <input asp-for="UnhealthyThreshold" class="form-control" />
+                    <span asp-validation-for="UnhealthyThreshold" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
