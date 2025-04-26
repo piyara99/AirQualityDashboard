@@ -44,6 +44,16 @@ namespace AirQualityDashboard.Controllers
                             .Where(d => d.SensorId == s.Id)
                             .OrderByDescending(d => d.Timestamp)
                             .Select(d => (int?)d.AQI)
+                            .FirstOrDefault() ?? 0,
+                        pm25 = _context.SensorDataRecords
+                            .Where(d => d.SensorId == s.Id)
+                            .OrderByDescending(d => d.Timestamp)
+                            .Select(d => (double?)d.PM25)
+                            .FirstOrDefault() ?? 0,
+                        pm10 = _context.SensorDataRecords
+                            .Where(d => d.SensorId == s.Id)
+                            .OrderByDescending(d => d.Timestamp)
+                            .Select(d => (double?)d.PM10)
                             .FirstOrDefault() ?? 0
                     })
                     .AsNoTracking()
@@ -61,6 +71,7 @@ namespace AirQualityDashboard.Controllers
                 });
             }
         }
+
 
         [HttpGet]
         public async Task<IActionResult> GetAqiHistory(int sensorId, int days = 1)
@@ -94,5 +105,83 @@ namespace AirQualityDashboard.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetHourlyPm(int sensorId)
+        {
+            try
+            {
+                var now = DateTime.UtcNow;
+                var past24h = now.AddHours(-23); // 24 points
+
+                var data = await _context.SensorDataRecords
+                    .Where(r => r.SensorId == sensorId && r.Timestamp >= past24h)
+                    .OrderBy(r => r.Timestamp)
+                    .ToListAsync();
+
+                // Fill gaps if fewer than 24 records
+                var pm25 = new List<double>();
+                var pm10 = new List<double>();
+
+                for (int i = 0; i < 24; i++)
+                {
+                    var hourStart = past24h.AddHours(i);
+                    var hourEnd = hourStart.AddHours(1);
+
+                    var recordsInHour = data
+                        .Where(d => d.Timestamp >= hourStart && d.Timestamp < hourEnd)
+                        .ToList();
+
+                    pm25.Add(recordsInHour.Any() ? recordsInHour.Average(d => d.PM25) : 0);
+                    pm10.Add(recordsInHour.Any() ? recordsInHour.Average(d => d.PM10) : 0);
+                }
+
+                return Json(new { pm25, pm10 });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching hourly PM data");
+                return StatusCode(500, "Error fetching hourly PM data");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMonthlyPm(int sensorId)
+        {
+            try
+            {
+                var now = DateTime.UtcNow;
+                var twelveMonthsAgo = now.AddMonths(-11);
+
+                var data = await _context.SensorDataRecords
+                    .Where(r => r.SensorId == sensorId && r.Timestamp >= twelveMonthsAgo)
+                    .ToListAsync();
+
+                var values = new List<double>();
+                var labels = new List<string>();
+
+                for (int i = 0; i < 12; i++)
+                {
+                    var monthStart = new DateTime(now.Year, now.Month, 1).AddMonths(-11 + i);
+                    var monthEnd = monthStart.AddMonths(1);
+
+                    var monthData = data
+                        .Where(d => d.Timestamp >= monthStart && d.Timestamp < monthEnd)
+                        .ToList();
+
+                    labels.Add(monthStart.ToString("MMM"));
+                    values.Add(monthData.Any() ? monthData.Average(d => d.PM25) : 0);
+                }
+
+                return Json(new { months = labels, values });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching monthly PM2.5 data");
+                return StatusCode(500, "Error fetching monthly PM data");
+            }
+        }
+
+
     }
 }
