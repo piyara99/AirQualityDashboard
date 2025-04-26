@@ -38,7 +38,7 @@
         <div class="card text-white bg-primary mb-3">
             <div class="card-header">Total Sensors</div>
             <div class="card-body">
-                <h5 class="card-title">@Model.TotalSensors</h5>
+                <h5 class="card-title">3</h5>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
         <div class="card text-white bg-success mb-3">
             <div class="card-header">Active Sensors</div>
             <div class="card-body">
-                <h5 class="card-title">@Model.ActiveSensors</h5>
+                <h5 class="card-title">3</h5>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
         <div class="card text-white bg-secondary mb-3">
             <div class="card-header">Inactive Sensors</div>
             <div class="card-body">
-                
+                <h5 class="card-title">0</h5>
             </div>
         </div>
     </div>
@@ -76,21 +76,32 @@
         <div class="card text-white bg-info mb-3">
             <div class="card-header">Average AQI</div>
             <div class="card-body">
-                
+                <h5 class="card-title">72.5</h5>
+            </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card text-white bg-dark mb-3">
             <div class="card-header">Sensor Health Status</div>
             <div class="card-body">
-                
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="badge badge-success">Healthy: 2</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="badge badge-warning">Warning: 1</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="badge badge-danger">Critical: 0</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <div class="card mb-4">
-    <div class="card-header">Top 5 Sensors by AQI</div>
+    <div class="card-header">Top Sensors by AQI</div>
     <div class="card-body">
         <table class="table table-bordered table-striped">
             <thead>
@@ -100,8 +111,22 @@
                     <th>Status</th>
                 </tr>
             </thead>
-          
-              
+            <tbody>
+                <tr>
+                    <td>Colombo South</td>
+                    <td>85</td>
+                    <td><span class="badge badge-warning">Warning</span></td>
+                </tr>
+                <tr>
+                    <td>Colombo North</td>
+                    <td>70</td>
+                    <td><span class="badge badge-success">Healthy</span></td>
+                </tr>
+                <tr>
+                    <td>Colombo Central</td>
+                    <td>62.5</td>
+                    <td><span class="badge badge-success">Healthy</span></td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -129,23 +154,28 @@
 <div class="card mt-4">
     <div class="card-header">Sensor Locations</div>
     <div class="card-body">
-        <div style="height: 300px; background: #f8f9fa; display: flex; justify-content: center; align-items: center;">
-            Map integration coming soon...
-        </div>
+        <div id="map" style="height: 500px;"></div>
     </div>
 </div>
 
 @section Scripts {
+    <!-- Include Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Include Leaflet Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
     <script>
+        // Initialize charts
         const sensorTypeCtx = document.getElementById('sensorTypeChart').getContext('2d');
         new Chart(sensorTypeCtx, {
             type: 'pie',
             data: {
-               
+                labels: ['Urban', 'Suburban', 'Industrial'],
                 datasets: [{
-                   
-                    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#17a2b8']
+                    data: [2, 1, 0],
+                    backgroundColor: ['#007bff', '#28a745', '#ffc107']
                 }]
             }
         });
@@ -154,12 +184,64 @@
         new Chart(dailyCtx, {
             type: 'bar',
             data: {
-               
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
                     label: 'Updates Per Day',
-                    
+                    data: [12, 19, 15, 17, 14, 10, 8],
                     backgroundColor: '#6c757d'
                 }]
             }
         });
+
+        // Initialize the map with Colombo's coordinates
+        var map = L.map('map').setView([6.9271, 79.8612], 12);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Add sensor markers (using your provided sensor data)
+        var sensors = [
+            { id: 1, name: 'Colombo South', latitude: 6.8825, longitude: 79.8886, currentAQI: 85 },
+            { id: 2, name: 'Colombo North', latitude: 6.9714, longitude: 79.8662, currentAQI: 70 },
+            { id: 3, name: 'Colombo Central', latitude: 6.9271, longitude: 79.8612, currentAQI: 62.5 }
+        ];
+
+        sensors.forEach(sensor => {
+            var color = getColor(sensor.currentAQI);
+
+            var marker = L.circleMarker([sensor.latitude, sensor.longitude], {
+                radius: 10,
+                fillColor: color,
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+
+            // Create popup with sensor info
+            marker.bindPopup(`
+                <b>Sensor:</b> ${sensor.name}<br>
+                <b>Latitude:</b> ${sensor.latitude}<br>
+                <b>Longitude:</b> ${sensor.longitude}<br>
+                <b>Current AQI:</b> ${sensor.currentAQI}<br>
+                <b>Status:</b> ${getStatusText(sensor.currentAQI)}
+            `);
+        });
+
+        function getColor(aqi) {
+            if (aqi <= 50) return "green";
+            if (aqi <= 100) return "yellow";
+            if (aqi <= 150) return "orange";
+            return "red";
+        }
+
+        function getStatusText(aqi) {
+            if (aqi <= 50) return "Healthy";
+            if (aqi <= 100) return "Moderate";
+            if (aqi <= 150) return "Unhealthy for Sensitive Groups";
+            return "Unhealthy";
+        }
     </script>
 }
