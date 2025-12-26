@@ -34,8 +34,8 @@ A web application to monitor air quality data from multiple sensors with **role-
 
 ## 📸 Screenshots
 
-![Dashboard](assets/Screenshot%202025-04-26%20113530.png)  
 ![AQI Charts](assets/Screenshot%202025-04-27%20203644.png) 
+![Dashboard](assets/Screenshot%202025-04-26%20113530.png)  
 ![AQI Charts](assets/Screenshot%202025-04-27%20203725.png)
 ![AQI Charts](assets/Screenshot%202025-04-27%20203941.png)
 ![AQI Charts](assets/Screenshot%202025-04-27%20204121.png)
