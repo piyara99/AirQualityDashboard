@@ -34,11 +34,12 @@ A web application to monitor air quality data from multiple sensors with **role-
 
 ## 📸 Screenshots
 
-![Dashboard](assets/Screenshot 2025-04-26 113530.png)  
-![AQI Charts](assets/Screenshot 2025-04-27 203644.png) 
-![AQI Charts](assets/Screenshot 2025-04-27 203725.png)
-![AQI Charts](assets/Screenshot 2025-04-27 203941.png)
-![AQI Charts](assets/Screenshot 2025-04-27 204121.png)
+![Dashboard](assets/Screenshot%202025-04-26%20113530.png)  
+![AQI Charts](assets/Screenshot%202025-04-27%20203644.png) 
+![AQI Charts](assets/Screenshot%202025-04-27%20203725.png)
+![AQI Charts](assets/Screenshot%202025-04-27%20203941.png)
+![AQI Charts](assets/Screenshot%202025-04-27%20204121.png)
+
 
 
 ⭐ Demonstrates skills in **secure web apps, role-based systems, full-stack development, and professional testing practices**.
